@@ -1,19 +1,21 @@
-" Vim specific settings
-
 " vim-plug and plugins
-call plug#begin('~/.local/share/nvim/plugged')
+
+call plug#begin(stdpath('data') . '/plugged')
 Plug 'racer-rust/vim-racer'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
+Plug 'preservim/nerdcommenter'
+Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'arakashic/chromatica.nvim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 Plug 'luisjure/csound-vim'
 Plug 'vim-latex/vim-latex'
 Plug 'alaviss/nim.nvim'
-" Plug 'arakashic/chromatica.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'dylanaraps/wal.vim'
+
 " THEME plugins
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'drewtempelmeyer/palenight.vim'
@@ -22,8 +24,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tyrannicaltoucan/vim-deep-space'
 call plug#end()
 
+" vim settings
 filetype plugin indent on
 syntax on
+" colorscheme wal
 colorscheme deep-space
 let g:airline_theme='deep_space'
 highlight clear SignColumn
@@ -57,10 +61,11 @@ let g:netrw_browse_split=0
 let g:ale_sign_error = ' '
 " let g:ale_sign_warning = '⚠'
 let g:ale_sign_warning = ' '
-"hi ALEErrorSign ctermfg=red ctermbg=none
-"hi ALEWarningSign ctermfg=yellow ctermbg=none
+" hi ALEErrorSign ctermfg=red ctermbg=none
+" hi ALEWarningSign ctermfg=yellow ctermbg=none
 hi link ALEErrorSign Error
 hi link ALEWarningSign Todo
+
 let g:ale_set_loclist = 0
 let g:ale_fixers = {'rust': ['rustfmt']}
 let g:ale_linters = {'go': ['gometalinter', 'gofmt', 'golint', 'govet'], 'rust': ['rls']}
@@ -70,31 +75,25 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-let g:cpp_class_scope_highlight=1
-let g:cpp_member_variable_highlight=1
-let g:cpp_class_decl_highlight=1
-let g:cpp_posix_standard=1
-let g:cpp_experimental_template_highlight=1
-let g:cpp_concepts_highlight=1
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
 
 let g:go_version_warning = 0
 
 let g:Imap_UsePlaceHolders = 0
 
-
 cmap W w
 " My mappings
 " move current line up/down
-nmap - VdkP
+nmap - Vdkp
 nmap _ Vdp
-" run various file types
-" au Filetype rust nmap <buffer> <F5> :!cargo run<return>
-" au Filetype python nmap <buffer> <F5> :!./%<return>
-" au Filetype go nmap <buffer> <F5> :!go run<return>
+
 nmap <F5> :SkiiRun<return>
-" save file
-nmap <F1> :w<return>
-imap <F1> <esc>:w<return>
+
 " remove trailing whitespace
 nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><return>
 " new tab with netrw
@@ -105,4 +104,3 @@ nmap ss ^f<Space>lC
 
 command! Compose execute "setlocal spell | setlocal linebreak"
 command! Decompose execute "setlocal nospell | setlocal nolinebreak"
-command! Cheat execute "14sp ~/.config/nvim/cheatsheet.md"
