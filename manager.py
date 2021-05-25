@@ -10,7 +10,7 @@ import requests
 # TODO
 # Nothing todo ATM.
 
-PRELIM_TEST = True
+PRELIM_TEST = False
 
 
 def error_print(msg):
@@ -52,7 +52,7 @@ def neovim():
     elif PRELIM_TEST:
         test_print("init.vim file does not exist. skipping install due to test status.")
     else:
-        dest.symlink_to("./nvim/init.vim")
+        dest.symlink_to(Path("./nvim/init.vim").absolute())
         try:
             subprocess.run("nvim +PlugInstall +qall --headless".split(), check=True)
         except FileNotFoundError:
