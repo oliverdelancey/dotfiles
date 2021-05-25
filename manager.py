@@ -3,10 +3,12 @@
 import argparse
 import os
 from pathlib import Path
-import shutil
 import subprocess
 
 import requests
+
+# TODO
+# - Add update, which calls git pull
 
 PRELIM_TEST = True
 
@@ -50,7 +52,7 @@ def neovim():
     elif PRELIM_TEST:
         test_print("init.vim file does not exist. skipping install due to test status.")
     else:
-        shutil.copy(Path("./nvim/init.vim"), dest)
+        dest.symlink_to("./nvim/init.vim")
         try:
             subprocess.run("nvim +PlugInstall +qall --headless".split(), check=True)
         except FileNotFoundError:
