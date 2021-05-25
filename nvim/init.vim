@@ -31,6 +31,7 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-syntax'
+Plug 'filipekiss/ncm2-look.vim'
 Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
 Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-pyclang'
@@ -81,6 +82,9 @@ let g:strip_whitespace_confirm=0
 let g:NERDSpaceDelims=1
 let g:NERDTrimTrailingWhitespace=1
 
+" nerdcommenter
+let g:NERDSpaceDelims=1
+
 " ale
 let g:ale_sign_error = ' '
 let g:ale_sign_warning = ' '
@@ -100,7 +104,15 @@ inoremap <c-c> <ESC>
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:ncm2_pyclang#library_path='/usr/lib/libclang.so.11.1'
+let g:ncm2_pyclang#library_path='/usr/lib/libclang.so'
+
+
+" +----------+
+" | COMMANDS |
+" +----------+
+
+command! Compose execute "setlocal spell | setlocal linebreak | syntax sync fromstart"
+command! Decompose execute "setlocal nospell | setlocal nolinebreak"
 
 
 " +----------+
@@ -110,3 +122,26 @@ let g:ncm2_pyclang#library_path='/usr/lib/libclang.so.11.1'
 inoremap jk <esc>
 nnoremap tt :NERDTree<return>
 
+" +-------------------+
+" | FILETYPE SETTINGS |
+" +-------------------+
+
+augroup latexfilesettings
+  autocmd!
+  autocmd FileType tex let b:ncm2_look_enabled = 1
+  autocmd FileType tex nnoremap <leader>]] :w<return>:!make<return>
+  autocmd FileType tex let &colorcolumn=join(range(91,999),",")
+  autocmd FileType tex set textwidth=90
+  autocmd FileType tex Compose
+augroup END
+
+augroup markdownsettings
+  autocmd!
+  autocmd FileType markdown let b:ncm2_look_enabled = 1
+  autocmd FileType markdown nnoremap <leader>]] :!grip "%"<return>
+augroup END
+
+augroup csettings
+  autocmd!
+  autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+augroup END
