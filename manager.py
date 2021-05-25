@@ -8,7 +8,7 @@ import subprocess
 import requests
 
 # TODO
-# - Add update, which calls git pull
+# Nothing todo ATM.
 
 PRELIM_TEST = True
 
