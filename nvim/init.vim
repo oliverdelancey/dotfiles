@@ -86,6 +86,7 @@ let g:ale_sign_error = ' '
 let g:ale_sign_warning = ' '
 hi link ALEErrorSign Error
 hi link ALEWarningSign Todo
+let g:ale_python_flake8_options="--max-line-length=88"
 let g:ale_cpp_clang_options="-std=c++17 -Wall"
 
 " black
