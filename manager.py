@@ -63,7 +63,7 @@ def neovim():
 
 if __name__ == "__main__":
     task_index = {
-        "vim-plug": vim_plug,
+        #  "vim-plug": vim_plug,
         "neovim": neovim,
     }
 
