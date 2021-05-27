@@ -68,6 +68,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
+set hidden
 filetype plugin indent on
 
 " airline
