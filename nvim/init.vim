@@ -120,8 +120,28 @@ command! Decompose execute "setlocal nospell | setlocal nolinebreak"
 " | MAPPINGS |
 " +----------+
 
+nnoremap <Space> <Nop>
+let mapleader="\<Space>"
+
 inoremap jk <esc>
+nnoremap <leader>w :w<return>
 nnoremap tt :NERDTree<return>
+
+nnoremap <leader>1 :buffer 1<return>
+nnoremap <leader>2 :buffer 2<return>
+nnoremap <leader>3 :buffer 3<return>
+nnoremap <leader>4 :buffer 4<return>
+nnoremap <leader>5 :buffer 5<return>
+nnoremap <leader>6 :buffer 6<return>
+nnoremap <leader>7 :buffer 7<return>
+nnoremap <leader>8 :buffer 8<return>
+nnoremap <leader>9 :buffer 9<return>
+nnoremap <leader>0 :buffer 10<return>
+
+nnoremap <leader>h :bprevious<return>
+nnoremap <leader>l :bnext<return>
+
+nnoremap <leader>bls :ls<return>:b<space>
 
 " +-------------------+
 " | FILETYPE SETTINGS |
@@ -130,7 +150,7 @@ nnoremap tt :NERDTree<return>
 augroup latexfilesettings
   autocmd!
   autocmd FileType tex let b:ncm2_look_enabled = 1
-  autocmd FileType tex nnoremap <leader>]] :w<return>:!make<return>
+  autocmd FileType tex nnoremap <leader>m :w<return>:!make<return>
   autocmd FileType tex let &colorcolumn=join(range(91,999),",")
   autocmd FileType tex set textwidth=90
   autocmd FileType tex Compose
