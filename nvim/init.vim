@@ -154,6 +154,10 @@ augroup latexfilesettings
   autocmd FileType tex let &colorcolumn=join(range(91,999),",")
   autocmd FileType tex set textwidth=90
   autocmd FileType tex Compose
+  autocmd FileType tex setlocal noautoindent
+  autocmd FileType tex setlocal nocindent
+  autocmd FileType tex setlocal nosmartindent
+  autocmd FileType tex setlocal indentexpr=
 augroup END
 
 augroup markdownsettings
