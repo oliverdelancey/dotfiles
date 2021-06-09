@@ -166,8 +166,8 @@ augroup markdownsettings
   autocmd!
   autocmd FileType markdown let b:ncm2_look_enabled = 1
   autocmd FileType markdown nnoremap <leader>]] :!grip "%"<return>
-  autocmd FileType tex let &colorcolumn=join(range(91,999),",")
-  autocmd FileType tex setlocal textwidth=90
+  autocmd FileType markdown let &colorcolumn=join(range(91,999),",")
+  autocmd FileType markdown setlocal textwidth=90
 augroup END
 
 augroup csettings
