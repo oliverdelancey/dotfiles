@@ -154,7 +154,7 @@ augroup latexfilesettings
   autocmd FileType tex nnoremap <leader>]] :w<return>:!make<return>
   autocmd FileType tex let b:ncm2_look_enabled = 1
   autocmd FileType tex let &colorcolumn=join(range(91,999),",")
-  autocmd FileType tex set textwidth=90
+  autocmd FileType tex setlocal textwidth=90
   autocmd FileType tex Compose
   autocmd FileType tex setlocal noautoindent
   autocmd FileType tex setlocal nocindent
@@ -166,6 +166,8 @@ augroup markdownsettings
   autocmd!
   autocmd FileType markdown let b:ncm2_look_enabled = 1
   autocmd FileType markdown nnoremap <leader>]] :!grip "%"<return>
+  autocmd FileType tex let &colorcolumn=join(range(91,999),",")
+  autocmd FileType tex setlocal textwidth=90
 augroup END
 
 augroup csettings
