@@ -121,7 +121,7 @@ command! Decompose execute "setlocal nospell | setlocal nolinebreak"
 " +----------+
 
 nnoremap <Space> <Nop>
-let mapleader="\<Space>"
+let mapleader=" "
 
 inoremap jk <esc>
 nnoremap <leader>w :w<return>
@@ -149,10 +149,12 @@ let mapleader="\\"
 " | FILETYPE SETTINGS |
 " +-------------------+
 
+let mapleader="\\"
+
 augroup latexfilesettings
   autocmd!
+  autocmd FileType tex nnoremap <leader>]] :w<return>:!make<return>
   autocmd FileType tex let b:ncm2_look_enabled = 1
-  autocmd FileType tex nnoremap <leader>m :w<return>:!make<return>
   autocmd FileType tex let &colorcolumn=join(range(91,999),",")
   autocmd FileType tex setlocal textwidth=90
   autocmd FileType tex Compose
@@ -174,3 +176,4 @@ augroup csettings
   autocmd!
   autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 augroup END
+
