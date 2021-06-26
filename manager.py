@@ -25,6 +25,15 @@ def test_print(msg):
     print(f"==TEST== > {msg}")
 
 
+def directory_exists(path):
+    p = Path(path).expanduser().resolve()
+    if not p.is_dir():
+        error_print(f"cannot find directory '{str(p)}'.")
+        return False
+    else:
+        return True
+
+
 def vim_plug():
     indep = Path("nvim") / "site" / "autoload" / "plug.vim"
     xdg_data_home = os.getenv("XDG_DATA_HOME")
@@ -46,7 +55,15 @@ def vim_plug():
 
 def neovim():
     vim_plug()
-    dest = Path("~/.config/nvim/init.vim").expanduser()
+
+    # Test for config directories.
+    config_dir = Path("~/.config/nvim").expanduser().resolve()
+    if not config_dir.is_dir():
+        info_print(f"could not find config directory '{str(config_dir)}'.")
+        info_print("creating config directory.")
+        config_dir.mkdir(parents=True)
+
+    dest = Path("~/.config/nvim/init.vim").expanduser().resolve()
     if dest.is_file():
         info_print("neovim's init.vim already exists. skipping.")
     elif PRELIM_TEST:
