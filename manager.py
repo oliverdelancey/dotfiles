@@ -76,6 +76,14 @@ def neovim():
             error_print("nvim isn't installed? and you're trying to configure it??")
         except subprocess.CalledProcessError:
             error_print("nvim didn't like installing the plugins. check your config.")
+            error_print(
+                (
+                    "most likely you simply need to:"
+                    "  1. start neovim, ignoring errors."
+                    "  2. run :PlugInstall ."
+                    "  3. enjoy!"
+                )
+            )
 
 
 if __name__ == "__main__":
